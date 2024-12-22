@@ -53,8 +53,8 @@ const EditTask = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
-      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8">
-        <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
+      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">
           Edit Task
         </h1>
         {task ? (
@@ -62,6 +62,14 @@ const EditTask = () => {
         ) : (
           <p className="text-gray-500 text-center">Loading task...</p>
         )}
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => router.push('/')}
+            className="bg-gray-200 text-black px-5 py-2 rounded-lg shadow hover:bg-gray-300 transition"
+          >
+            Back to the List
+          </button>
+        </div>
       </div>
     </div>
   );
