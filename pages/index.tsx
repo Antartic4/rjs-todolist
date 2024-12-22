@@ -2,13 +2,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { deleteTask, getTasks, updateTask } from '@/src/utils/api';
 import TaskCard from '@/src/components/TaskCard';
-
-type Task = {
-  id: number;
-  title: string;
-  color: string;
-  completed: boolean;
-};
+import { Task } from '@/src/types/task';
 
 const Home = () => {
   const [tasks, setTasks] = useState<Task[]>([]);

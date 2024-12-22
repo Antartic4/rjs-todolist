@@ -2,13 +2,19 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getTasks, updateTask } from '@/src/utils/api';
 import TaskForm from '@/src/components/TaskForm';
+import { Color, Task } from '@/src/types/task';
 
-type Task = {
-  id: number;
-  title: string;
-  color: string;
-  completed: boolean;
-};
+const validColors: Color[] = [
+  'white',
+  'blue',
+  'red',
+  'green',
+  'purple',
+  'yellow',
+  'orange',
+  'teal',
+  'pink',
+];
 
 const EditTask = () => {
   const router = useRouter();
@@ -19,7 +25,15 @@ const EditTask = () => {
     const fetchTask = async () => {
       const response = await getTasks();
       const currentTask = response.data.find((t: Task) => t.id === Number(id));
-      setTask(currentTask || null);
+      if (currentTask) {
+        // Validate the color or fallback to a default
+        const color = validColors.includes(currentTask.color as Color)
+          ? (currentTask.color as Color)
+          : 'white';
+        setTask({ ...currentTask, color });
+      } else {
+        setTask(null);
+      }
     };
     if (id) {
       fetchTask();
